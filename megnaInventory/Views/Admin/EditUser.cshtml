@@ -1,0 +1,95 @@
+@model megnaInventory.Controllers.EditUserViewModel
+@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Edit User";
+    ViewData["ActivePage"] = "UserManagement";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0"><i class="fas fa-user-edit me-2"></i>Edit User Details</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" asp-action="EditUser">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
+                            <input asp-for="FullName" class="form-control" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fas fa-users me-2"></i>Roles</label>
+                            <div class="border rounded p-3">
+                                @foreach (var role in Model.AllRoles)
+                                {
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" name="SelectedRoles" value="@role" 
+                                               class="form-check-input" id="role_@role"
+                                               @(Model.SelectedRoles.Contains(role) ? "checked" : "") />
+                                        <label class="form-check-label" for="role_@role">
+                                            <span class="badge @(role == "Admin" ? "bg-danger" : "bg-info")">@role</span>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                            <span asp-validation-for="SelectedRoles" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input asp-for="IsApproved" class="form-check-input" />
+                            <label asp-for="IsApproved" class="form-check-label">
+                                <strong>Approved</strong> - User can login to the system
+                            </label>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<style>
+    .card {
+        border-radius: 10px;
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, #004b93 0%, #0076c8 100%);
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    .form-control:focus {
+        border-color: #0076c8;
+        box-shadow: 0 0 0 0.2rem rgba(0, 118, 200, 0.25);
+    }
+</style>

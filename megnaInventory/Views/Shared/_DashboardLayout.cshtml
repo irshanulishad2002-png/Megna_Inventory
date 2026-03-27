@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MGI Dashboard</title>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom Dashboard Styles -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/megnaInventory.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <partial name="_Sidebar" />
+
+        <!-- Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Area -->
+        <div class="main-area">
+            <!-- Topbar -->
+            <partial name="_Topbar" />
+
+            <!-- Page Content -->
+            <main class="content-body">
+                @RenderBody()
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer-dashboard px-4 py-3 border-top bg-white mt-auto">
+                <div class="d-flex justify-content-between align-items-center small text-muted">
+                    <div>&copy; 2026 Meghna Group of Industries (MGI)</div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <text>toastr.success('@TempData["SuccessMessage"]');</text>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <text>toastr.error('@TempData["ErrorMessage"]');</text>
+            }
+            @if (TempData["InfoMessage"] != null)
+            {
+                <text>toastr.info('@TempData["InfoMessage"]');</text>
+            }
+            @if (TempData["WarningMessage"] != null)
+            {
+                <text>toastr.warning('@TempData["WarningMessage"]');</text>
+            }
+        });
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            const sidebar = $('#sidebar');
+            const overlay = $('#sidebarOverlay');
+            const wrapper = $('.dashboard-wrapper');
+            const toggleBtn = $('#sidebarToggle');
+
+            function toggleSidebar() {
+                if ($(window).width() <= 992) {
+                    sidebar.toggleClass('show');
+                    overlay.toggleClass('show');
+                    $('body').toggleClass('overflow-hidden');
+                } else {
+                    wrapper.toggleClass('sidebar-collapsed');
+                }
+            }
+
+            toggleBtn.on('click', function(e) {
+                e.stopPropagation();
+                toggleSidebar();
+            });
+
+            overlay.on('click', function() {
+                sidebar.removeClass('show');
+                overlay.removeClass('show');
+                $('body').removeClass('overflow-hidden');
+            });
+
+            // Handle window resize
+            $(window).resize(function() {
+                if ($(window).width() > 992) {
+                    sidebar.removeClass('show');
+                    overlay.removeClass('show');
+                    $('body').removeClass('overflow-hidden');
+                }
+            });
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

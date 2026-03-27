@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MGI Inventory System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="icon" href="~/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/megnaInventory.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <img src="~/img/loader.gif" alt="Loading..." style="width: 300px;" />
+    </div>
+    @{
+        var isHome = ViewData["IsHome"] as bool? == true;
+        var navbarClass = isHome ? "fixed-top navbar-transparent" : "sticky-top bg-white shadow-sm";
+    }
+    <header>
+        <nav id="mainNav" class="navbar navbar-expand-lg navbar-light @navbarClass">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/logo.png" alt="MGI Logo" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About MGI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="VisionMission">VISION, MISSION & VALUES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                                <a class="btn btn-primary-mgi text-white" 
+                                   asp-controller="@(User.IsInRole("Admin") ? "Admin" : "Index")" 
+                                   asp-action="Index" 
+                                   style="border-radius:5px; padding: 10px 24px !important; font-size: 0.95rem;">
+                                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <a class="btn btn-outline-danger" asp-controller="Account" asp-action="Logout" style="border-radius:5px; padding: 10px 24px !important; font-size: 0.95rem;">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                                <a class="btn btn-primary-mgi text-white" asp-controller="Account" asp-action="Login" style="border-radius:5px; padding: 10px 24px !important; font-size: 0.95rem;">System Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer-mgi text-center mt-auto">
+        <div class="container d-flex flex-column align-items-center">
+            <img src="~/img/logo.png" alt="MGI Logo" style="max-height: 50px; margin-bottom: 25px; filter: grayscale(1) brightness(2);" />
+            <p>&copy; 2026 Meghna Group of Industries (MGI) Inventory Management System.</p>
+            <p><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a> &bull; <a href="#">Terms of Use</a></p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <text>toastr.success('@TempData["SuccessMessage"]');</text>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <text>toastr.error('@TempData["ErrorMessage"]');</text>
+            }
+            @if (TempData["InfoMessage"] != null)
+            {
+                <text>toastr.info('@TempData["InfoMessage"]');</text>
+            }
+            @if (TempData["WarningMessage"] != null)
+            {
+                <text>toastr.warning('@TempData["WarningMessage"]');</text>
+            }
+        });
+    </script>
+
+    <script>
+        // Strict 7-second preloader duration
+        setTimeout(function() {
+            $('#preloader').addClass('hidden');
+        }, 5000);
+
+        $(window).scroll(function() {
+            if ($("#mainNav").hasClass("navbar-transparent") || $("#mainNav").hasClass("navbar-scrolled")) {
+                if ($(document).scrollTop() > 50) {
+                    $("#mainNav").removeClass("navbar-transparent").addClass("navbar-scrolled");
+                } else {
+                    $("#mainNav").removeClass("navbar-scrolled").addClass("navbar-transparent");
+                }
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

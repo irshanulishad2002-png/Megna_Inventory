@@ -1,0 +1,152 @@
+@model List<megnaInventory.Controllers.UserViewModel>
+@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "User Management";
+    ViewData["ActivePage"] = "UserManagement";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0"><i class="fas fa-users-cog me-2"></i>User Management</h3>
+                    <span class="badge bg-light text-dark">Total Users: @Model.Count</span>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show m-3" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Roles</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int index = 1;
+                                }
+                                @foreach (var user in Model)
+                                {
+                                    <tr>
+                                        <td>@(index++)</td>
+                                        <td>
+                                            <i class="fas fa-user-circle me-2 text-primary"></i>
+                                            @user.FullName
+                                        </td>
+                                        <td>@user.Email</td>
+                                        <td>@user.PhoneNumber</td>
+                                        <td>
+                                            @foreach (var role in user.Roles)
+                                            {
+                                                <span class="badge @(role == "Admin" ? "bg-danger" : "bg-info") me-1">@role</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (user.IsApproved)
+                                            {
+                                                <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Approved</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning text-dark"><i class="fas fa-clock me-1"></i>Pending</span>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            @if (!user.IsApproved)
+                                            {
+                                                <form method="post" asp-action="ApproveUser" asp-route-userId="@user.Id" style="display:inline;">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-sm btn-success" title="Approve User">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                            }
+                                            
+                                            @if (!user.Roles.Contains("Admin"))
+                                            {
+                                                <form method="post" asp-action="RejectUser" asp-route-userId="@user.Id" style="display:inline;">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-sm btn-warning" title="Reject User">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                                
+                                                <form method="post" asp-action="DeleteUser" asp-route-userId="@user.Id" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-sm btn-danger" title="Delete User">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            }
+                                            
+                                            <a asp-action="EditUser" asp-route-userId="@user.Id" class="btn btn-sm btn-primary" title="Edit User">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-users-slash fa-4x text-muted mb-3"></i>
+                        <h4 class="text-muted">No users found</h4>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, #004b93 0%, #0076c8 100%);
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    .table thead th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+</style>

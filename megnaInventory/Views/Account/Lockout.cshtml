@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Account Locked Out";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <i class="fas fa-user-lock fa-5x text-warning mb-4"></i>
+                    <h2 class="fw-bold text-warning">Account Locked Out</h2>
+                    <p class="lead text-muted">Too many failed login attempts. Your account has been temporarily locked.</p>
+                    <hr />
+                    <p class="text-muted small">
+                        Please wait a few minutes before trying again, or contact your administrator for assistance.
+                    </p>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary-mgi mt-3">
+                        <i class="fas fa-home me-2"></i>Go to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    }
+    
+    .btn-primary-mgi {
+        background: linear-gradient(135deg, #004b93 0%, #0076c8 100%);
+        border: none;
+    }
+    
+    .btn-primary-mgi:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 75, 147, 0.3);
+    }
+</style>

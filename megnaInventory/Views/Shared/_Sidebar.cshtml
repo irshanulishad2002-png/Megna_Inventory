@@ -1,0 +1,62 @@
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a asp-controller="Home" asp-action="Index">
+            <img src="~/img/logo.png" alt="MGI Logo" />
+        </a>
+    </div>
+    
+    <div class="sidebar-content">
+        <div class="sidebar-group-label">Main Menu</div>
+        
+        <a class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "active" : "")" 
+           asp-controller="@(User.IsInRole("Admin") ? "Admin" : "Home")" asp-action="Index">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="sidebar-group-label">Administration</div>
+            <a class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "UserManagement" ? "active" : "")" 
+               asp-controller="Admin" asp-action="UserManagement">
+                <i class="fas fa-users-cog"></i>
+                <span>User Management</span>
+            </a>
+            <a class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Inventory" ? "active" : "")" 
+               asp-controller="Inventory" asp-action="Index">
+                <i class="fas fa-boxes-stacked"></i>
+                <span>Inventory</span>
+            </a>
+            <a class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Reports" ? "active" : "")" 
+               asp-controller="Reports" asp-action="Index">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+        }
+        else if (User.IsInRole("Manager"))
+        {
+             <div class="sidebar-group-label">Management</div>
+             <a class="sidebar-link @(ViewData["ActivePage"]?.ToString() == "Inventory" ? "active" : "")" 
+               asp-controller="Inventory" asp-action="Index">
+                <i class="fas fa-boxes-stacked"></i>
+                <span>Inventory</span>
+            </a>
+        }
+        
+        @* Custom Sidebar Items for specific pages *@
+        @if (ViewContext.ViewData.ContainsKey("CustomSidebar"))
+        {
+             @await Html.PartialAsync("_CustomSidebarContent")
+        }
+
+        <div class="sidebar-group-label" style="margin-top: auto;">Account</div>
+        <a class="sidebar-link" asp-controller="Account" asp-action="Profile">
+            <i class="fas fa-user-circle"></i>
+            <span>My Profile</span>
+        </a>
+        <a class="sidebar-link text-danger" asp-controller="Account" asp-action="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>

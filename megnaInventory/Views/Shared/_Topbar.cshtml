@@ -1,0 +1,36 @@
+<header class="topbar">
+    <div class="topbar-left">
+        <button class="menu-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="breadcrumb-container d-none d-md-block">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#">System</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="topbar-right">
+        <div class="dropdown">
+            <div class="user-profile" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="user-avatar text-uppercase bg-primary text-white">
+                    @(User.Identity?.Name?.Substring(0, 1) ?? "U")
+                </div>
+                <div class="user-info d-none d-sm-block">
+                    <span class="user-name">@User.Identity?.Name</span>
+                    <span class="user-role">@(User.IsInRole("Admin") ? "Administrator" : "Employee")</span>
+                </div>
+                <i class="fas fa-chevron-down ms-2 fs-xs text-muted"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userMenu">
+                <li><a class="dropdown-item py-2" asp-controller="Account" asp-action="Profile"><i class="fas fa-user-circle me-2 text-muted"></i>Profile</a></li>
+                <li><a class="dropdown-item py-2" asp-controller="Account" asp-action="Settings"><i class="fas fa-cog me-2 text-muted"></i>Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item py-2 text-danger" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</header>

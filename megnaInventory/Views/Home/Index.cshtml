@@ -1,0 +1,198 @@
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["IsHome"] = true;
+}
+
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide carousel-fade hero-slider" data-bs-ride="carousel" data-bs-interval="6000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <img src="~/img/slider1.jpg" class="d-block w-100" alt="Slider 1">
+            <div class="hero-caption">
+                <h1>Flow Limitless, Flow with MGI</h1>
+                <p>Welcome to the customized Meghna Group of Industries Inventory Management System.</p>
+                <a href="#features" class="btn btn-primary-mgi mt-3">Explore Platform</a>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <img src="~/img/slider2.jpg" class="d-block w-100" alt="Slider 2">
+            <div class="hero-caption">
+                <h1>Breaking Boundaries</h1>
+                <p>51 Years of our unstoppable flow and unwavering commitment to excellence.</p>
+                <a href="#" class="btn btn-primary-mgi mt-3">Access Portal</a>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <img src="~/img/slider3.jpg" class="d-block w-100" alt="Slider 3">
+            <div class="hero-caption">
+                <h1>Integrated Supply Chain</h1>
+                <p>Seamlessly managing vast inventory and operations across all diverse business verticals.</p>
+                <a href="#" class="btn btn-primary-mgi mt-3">System Login</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Features Section -->
+<section id="features" class="section-padding" style="background-color: #f7f9fc;">
+    <div class="container">
+        <h2 class="section-title">Why MGI Inventory System?</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box">
+                    <i class="fas fa-boxes feature-icon"></i>
+                    <h3 class="feature-title">Real-time Tracking</h3>
+                    <p class="text-muted">Monitor stock levels, warehouse movements, and supply chain updates instantaneously across all MGI facilities.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-box">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3 class="feature-title">Data-Driven Insights</h3>
+                    <p class="text-muted">Leverage advanced analytics to forecast demand, optimize stock, and prevent shortages or excesses efficiently.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="feature-box">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Secure & Reliable</h3>
+                    <p class="text-muted">Built with robust enterprise-grade security to ensure your inventory tracking provides a single secure source of truth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Information Section / System Architecture -->
+<section class="section-padding bg-white pb-5" id="architecture-roles">
+    <div class="container">
+        
+        <!-- Call to action block (re-integrated) -->
+        <div class="text-center mb-5 pb-3">
+            <h2 class="mb-4 font-weight-bold" style="color: #002c5f; font-weight: 800; font-size: 2.5rem;">Streamline Your Operations Today</h2>
+            <p class="lead text-muted" style="max-width: 800px; margin: 0 auto;">Join the centralized MGI inventory portal to connect warehouses, manufacturing plants, and distribution centers with world-class efficiency.</p>
+        </div>
+
+        <div class="row align-items-center g-5 mb-5">
+            <!-- Features List (Left Column) -->
+            <div class="col-lg-5">
+                <div class="features-card position-relative overflow-hidden" style="background: linear-gradient(135deg, #004b93 0%, #0076c8 100%); color: white; border-radius: 16px; padding: 3rem 2.5rem; box-shadow: 0 15px 35px rgba(0, 118, 200, 0.2);">
+                    <!-- Decorative element -->
+                    <div class="position-absolute" style="top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
+                    
+                    <h2 class="mb-4 text-center fw-bold text-white shadow-sm pb-3" style="border-bottom: 2px solid rgba(255,255,255,0.2); font-size: 2rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);">
+                        Inventory Management<br/>System Features
+                    </h2>
+                    
+                    <ul class="list-unstyled mb-0 feature-list" style="font-size: 1.15rem; line-height: 2;">
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Stock Tracking & Alerts</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Order Management</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Supplier & Purchase Management</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Sales & Invoice Processing</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Barcode & RFID Scanning</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Reporting & Analytics</span>
+                        </li>
+                        <li class="d-flex align-items-center rounded p-2" style="background: rgba(255,255,255,0.08); transition: background 0.3s ease;">
+                            <i class="fas fa-check-circle me-3 shadow-sm" style="color: #4CAF50; font-size: 1.6rem; background: white; border-radius: 50%; padding: 2px;"></i> 
+                            <span class="font-weight-bold">Multi-Location Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Roles Summary (Right Column) -->
+            <div class="col-lg-7">
+                <div class="ps-lg-4">
+                    <h2 class="mb-4 font-weight-bold" style="color: #002c5f; font-weight: 800; font-size: 2.2rem; border-left: 5px solid #0076c8; padding-left: 15px;">
+                        System Roles & Interactions
+                    </h2>
+                    <p class="text-muted mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                        Our integrated ecosystem connects key stakeholders through specialized workflows, providing appropriate access levels and intuitive tools for every operational role globally.
+                    </p>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="role-box h-100 p-4 shadow-sm" style="background: #ffffff; border-radius: 12px; border-left: 5px solid #004b93; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                                <h4 class="fw-bold mb-3" style="color: #004b93;"><i class="fas fa-user-tie me-2"></i> Inventory Manager</h4>
+                                <ul class="text-muted list-unstyled mb-0" style="font-size: 0.95rem;">
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-primary"></i> <span class="fw-bold">Manage Stock</span> Control</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-primary"></i> <span class="fw-bold">Receive Shipments</span> Tracking</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-primary"></i> <span class="fw-bold">Transfer Stock</span> Logistically</li>
+                                    <li><i class="fas fa-angle-right me-2 text-primary"></i> <span class="fw-bold">View Inventory Levels</span> Instantly</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="role-box h-100 p-4 shadow-sm" style="background: #ffffff; border-radius: 12px; border-left: 5px solid #e67e22; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                                <h4 class="fw-bold mb-3" style="color: #e67e22;"><i class="fas fa-tags me-2"></i> Sales Staff</h4>
+                                <ul class="text-muted list-unstyled mb-0" style="font-size: 0.95rem;">
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2" style="color: #e67e22;"></i> <span class="fw-bold">Process Sales Orders</span> Rapidly</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2" style="color: #e67e22;"></i> <span class="fw-bold">Scan Items</span> Efficiently</li>
+                                    <li><i class="fas fa-angle-right me-2" style="color: #e67e22;"></i> <span class="fw-bold">View Inventory Levels</span> Readily</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="role-box h-100 p-4 shadow-sm" style="background: #ffffff; border-radius: 12px; border-left: 5px solid #27ae60; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                                <h4 class="fw-bold mb-3" style="color: #27ae60;"><i class="fas fa-truck-loading me-2"></i> Supplier</h4>
+                                <ul class="text-muted list-unstyled mb-0" style="font-size: 0.95rem;">
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-success"></i> <span class="fw-bold">Generate Reports</span> Accurately</li>
+                                    <li><i class="fas fa-angle-right me-2 text-success"></i> Integrate with <span class="fw-bold">System Nodes</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="role-box h-100 p-4 shadow-sm" style="background: #ffffff; border-radius: 12px; border-left: 5px solid #e91e63; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                                <h4 class="fw-bold mb-3" style="color: #e91e63;"><i class="fas fa-user-shield me-2"></i> Admin</h4>
+                                <ul class="text-muted list-unstyled mb-0" style="font-size: 0.95rem;">
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-danger"></i> <span class="fw-bold">Manage Users</span> Logins</li>
+                                    <li class="mb-2"><i class="fas fa-angle-right me-2 text-danger"></i> Oversee <span class="fw-bold">System Configuration</span></li>
+                                    <li><i class="fas fa-angle-right me-2 text-danger"></i> Ensure <span class="fw-bold">Data Integrity</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loader-section text-center mt-5 mb-4">
+            <img src="~/img/loader.gif" alt="Loading animation" style="max-height: 70px; margin-bottom: 15px;" />
+            <p class="text-muted fst-italic">System modules loading...</p>
+        </div>
+        
+    </div>
+</section>
